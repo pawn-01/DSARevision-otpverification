@@ -33,7 +33,7 @@ const Problem = () => {
    
   
   async function Revison(e){
-    console.log("add");
+   // console.log("add");
      e.preventDefault();
      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/add`,{
           title,
@@ -65,7 +65,7 @@ if(redirect){
        <div className='h-[100vh] flex justify-center items-center bg-[#00204a]'>
        <div className="rounded-lg border bg-card text-card-foreground shadow-lg mx-auto w-[70%] bg-[#fcfefe]">
               <div className="flex flex-col p-6 space-y-1">
-                <h3 className="whitespace-nowrap tracking-tight text-2xl font-bold">Add Revison Question</h3>
+                <h3 className="whitespace-nowrap tracking-tight text-2xl font-bold">Add Revision Question</h3>
                   <p className="text-sm text-muted-foreground">Enter Question details below to add in your Revison </p>
             </div>
   <div className="p-6">
@@ -118,14 +118,21 @@ if(redirect){
           </div>
   
         </div>
-        <input
+        <select data-placeholder="Select difficulty" onChange={(e)=>{console.log(e.target.value); setdifficulty(e.target.value)}} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+    <option value=""></option>
+    <option className='p-1'>Easy</option>
+    <option className='px-1 py-0.5'>Medium</option>
+    <option className='px-1 py-0.5'>Hard</option>
+  
+  </select>
+        {null && <input
           className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           required=""
           type="text"
           value={difficulty}
           placeholder='medium'
           onChange={(e)=>{setdifficulty(e.target.value)}}
-        />
+        />}
       </div>
       <button
         className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-[100%] bg-[black] text-[white] "

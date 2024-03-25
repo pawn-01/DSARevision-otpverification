@@ -7,12 +7,14 @@ import { listcount, reload } from '../Count'
 
 const itemsperpage = 8;
 
-const Questionlist = memo(function Questionlist({value}) {
+const Questionlist = memo(function Questionlist({value,value2}) {
     const [currentpage, setcurrentpage] = useState(0);
     const [loader, setloader] = useState(true);
     const [queslist, setqueslist] = useState([]);
     const[count,setcount] = useRecoilState(listcount);
     const [Reload, setReload] = useRecoilState(reload);
+
+    console.log("value "+value2)
 
 
     function handlepage(pagenumber){
@@ -23,7 +25,7 @@ const Questionlist = memo(function Questionlist({value}) {
 
     useEffect(() => {
       async function backend(){
-         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/list?value=${value}`,{headers:{token:localStorage.getItem('token')}});
+         const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/list?value=${value2==""?value:'Tags: '+value2}`,{headers:{token:localStorage.getItem('token')}});
          if(res.data.a==1){
             setqueslist(res.data.list);
             setloader(false);
@@ -36,7 +38,7 @@ const Questionlist = memo(function Questionlist({value}) {
       
        backend();
      
-    }, [value,Reload])
+    }, [value,value2,Reload])
 
     console.log("list" + queslist);
    
@@ -70,7 +72,7 @@ const Questionlist = memo(function Questionlist({value}) {
        {rows.length>0 && rows.map((list,i)=>(
       <Question {...list} i={i+currentpage*itemsperpage+1}/>
         ))}
-        <div className='flex justify-center items-center cursor-pointer'>
+       {nofpage>1 && <div className='flex justify-center items-center cursor-pointer'>
           <svg onClick={()=>{handlepage(currentpage-1)}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 bg-black text-white">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
           </svg>
@@ -79,9 +81,9 @@ const Questionlist = memo(function Questionlist({value}) {
           ))}
           <svg onClick={()=>{handlepage(currentpage+1)}} xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6  bg-black text-white">
           <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-         </svg>
+         </svg> 
 
-        </div>
+        </div>}
      </>
   )
 })

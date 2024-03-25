@@ -33,6 +33,8 @@ const Landing = () => {
      const [logout, setlogout] = useState(false);
      const [name, setname] = useState("");
      const debouncy = usedebounce(name,500);
+     const [tags,settags] = useState("");
+     const debouncetags = usedebounce(tags,500);
      const[Theme,setTheme] = useState();
 
      useEffect(() => {
@@ -141,23 +143,33 @@ const Landing = () => {
         </div>
         <div>
         <div class="max-w-full mx-auto p-6 bg-white rounded-lg shadow-2xl dark:bg-[#240041]">
-  <div class="flex items-center justify-between mb-4">
+  <div class="flex items-center justify-between mb-4 ">
     <div class="flex items-center space-x-2">
       <div class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 bg-blue-500 text-white">
         DSA
       </div>
     </div>
+     <div className='flex justify-center items-center gap-1'>
+     <div className='text-[#888] dark:text-white font-bold'>Tags:</div>
+    <input className="flex h-10 w-[5.5rem] rounded-md border border-input border-black  bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              placeholder="Enter Tag"
+              type="text"
+              value={tags}
+              onChange={(e)=>{settags(e.target.value)}}
+            ></input>
+     </div>
     <div class="flex space-x-2">
       <div class="dark:text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
         Start Practicing
       </div>
+
       <button class="inline-flex items-center justify-center bg-[red] text-[white] whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90 h-10 px-4 py-2" onClick={Delete}>
         Delete
       </button>
     </div>
   </div>
   <div class="overflow-hidden rounded-lg border-t border-b border-gray-200">
-   {!confirm &&  !debouncy.load && <Questionlist value={debouncy.debounce}/>}
+   {!confirm &&  !debouncy.load && <Questionlist value={debouncy.debounce}  value2={debouncetags.debounce}/>}
    {confirm && <div className='dark:text-white'>
      <h1>Are You sure you want to delete your entire question list ?</h1>
      <div className='flex gap-5 p-5 '>

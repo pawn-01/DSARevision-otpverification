@@ -35,10 +35,11 @@ const Login = () => {
         password
      })
      if(res.data.a==1){
-       console.log(res.data.token);
+       alert("if not verify then otp send to your gmail")
        localStorage.setItem('token',res.data.token);
        setredirect(true);
        setUser(res.data.user);
+     //  Navi('/landing');
      }
 
      else{

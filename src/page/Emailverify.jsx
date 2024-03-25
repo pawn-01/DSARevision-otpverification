@@ -10,7 +10,7 @@ const Emailverify = () => {
     const [otp, setOtp] = useState('');
     const [resend, setresend] = useState(false);
     const[User,setUser] = useRecoilState(user);
-    const [date, setdate] = useState(null); 
+    const [date, setdate] = useState(new Date().getTime()); 
 
     useEffect(() => {
         async function backend(){
@@ -21,7 +21,7 @@ const Emailverify = () => {
              }
             else{
               const t = new Date().getTime();
-              if(!date || t>date+60000){
+              if(t>date+60000){
                 setdate(new Date().getTime());
                 const otpres = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/otpsend`,{},{headers:{token:localStorage.getItem('token')}})
                 if(otpres.data.a==1){
