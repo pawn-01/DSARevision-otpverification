@@ -29,7 +29,7 @@ const Emailverify = () => {
                 }
             }
             else{
-              alert("wait for 1 minute")
+              alert("Please wait for few seconds")
             }
           }
           }

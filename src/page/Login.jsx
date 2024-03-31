@@ -35,7 +35,7 @@ const Login = () => {
         password
      })
      if(res.data.a==1){
-       alert("if not verify then otp send to your gmail")
+       alert("An otp is sent to your email for verification, if not yet verified !")
        localStorage.setItem('token',res.data.token);
        setredirect(true);
        setUser(res.data.user);

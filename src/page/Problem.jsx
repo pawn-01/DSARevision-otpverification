@@ -65,8 +65,8 @@ if(redirect){
        <div className='h-[100vh] flex justify-center items-center bg-[#00204a]'>
        <div className="rounded-lg border bg-card text-card-foreground shadow-lg mx-auto w-[70%] bg-[#fcfefe]">
               <div className="flex flex-col p-6 space-y-1">
-                <h3 className="whitespace-nowrap tracking-tight text-2xl font-bold">Add Revision Question</h3>
-                  <p className="text-sm text-muted-foreground">Enter Question details below to add in your Revison </p>
+                <h3 className="whitespace-nowrap tracking-tight text-2xl font-bold">Add Question</h3>
+                  <p className="text-sm text-muted-foreground">Enter Question's details below to add in your revision list</p>
             </div>
   <div className="p-6">
     <div className="space-y-4">
